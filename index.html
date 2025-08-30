@@ -1,0 +1,699 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Simple Portfolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <style>
+        /* CSS resets and general styles */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f3f4f6;
+            color: #333;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 1rem;
+        }
+
+        /* Header section styles */
+        .header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #fff;
+            padding: 1.5rem 1rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .header {
+                flex-direction: row;
+            }
+        }
+
+        .logo-section {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .logo-section {
+                margin-bottom: 0;
+            }
+        }
+
+        .logo-circle {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 0.5rem;
+        }
+
+        /* The new gradient logo box styling */
+        .logo-gradient-box {
+            width: 40px;
+            height: 40px;
+            border-radius: 8px;
+            background-image: linear-gradient(to bottom right, #2563eb, #2dd4bf);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo-text h1 {
+            font-size: 1.125rem;
+            font-weight: bold;
+            margin: 0;
+        }
+
+        .logo-text p {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .nav-menu {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+            flex-grow: 1;
+        }
+
+        @media (min-width: 768px) {
+            .nav-menu {
+                justify-content: flex-end;
+            }
+        }
+
+        .nav-menu a {
+            text-decoration: none;
+            color: #6b7280;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+
+        .nav-menu a:hover {
+            color: #3b82f6;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        @media (min-width: 768px) {
+            .social-icons {
+                margin-left: 1.5rem;
+                margin-top: 0;
+            }
+        }
+
+        .social-icons a {
+            color: #6b7280;
+            font-size: 1.25rem;
+            transition: color 0.3s;
+        }
+
+        .social-icons a:hover {
+            color: #333;
+        }
+
+        /* Main content section styles */
+        .main-content {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            background-color: #fff;
+            padding: 4rem 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            gap: 2rem;
+            margin-bottom: 2rem;
+        }
+
+        @media (min-width: 1024px) {
+            .main-content {
+                flex-direction: row;
+                gap: 3rem;
+            }
+        }
+
+        .text-column {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+
+        @media (min-width: 1024px) {
+            .text-column {
+                align-items: flex-start;
+                text-align: left;
+            }
+        }
+
+        .tagline {
+            font-size: 0.75rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .name {
+            font-size: 2.25rem;
+            font-weight: 800;
+            color: #111827;
+            line-height: 1.25;
+            margin: 0;
+        }
+
+        .title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #3b82f6;
+            margin-bottom: 1rem;
+        }
+
+        .bio-text {
+            font-size: 1.125rem;
+            color: #4b5563;
+            margin-bottom: 2rem;
+            max-width: 32rem;
+        }
+
+        .buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .buttons {
+                flex-direction: row;
+            }
+        }
+
+        .button {
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem 2rem;
+            border-radius: 9999px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s;
+            text-align: center;
+        }
+
+        .button.primary {
+            background-color: #3b82f6;
+            color: #fff;
+        }
+
+        .button.primary:hover {
+            background-color: #2563eb;
+        }
+
+        .button.secondary {
+            background-color: #e5e7eb;
+            color: #333;
+        }
+
+        .button.secondary:hover {
+            background-color: #d1d5db;
+        }
+
+        .footer-text {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin-top: 2rem;
+        }
+
+        .image-column {
+            display: flex;
+            justify-content: center;
+        }
+
+        .profile-image {
+            width: 100%;
+            max-width: 400px;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        /* --- Sections --- */
+
+        .section-container {
+            background-color: #fff;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            margin-bottom: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 1.5rem;
+            text-align: center;
+
+        }
+
+        .about-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        @media (min-width: 768px) {
+            .about-grid {
+                flex-direction: row;
+            }
+        }
+
+        .about-bio,
+        .quick-info {
+            flex: 1;
+            padding: 1.5rem;
+            border-radius: 12px;
+            border: 1px solid #e5e7eb;
+        }
+
+        .about-bio h3,
+        .quick-info h3 {
+            font-size: 1.25rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin-bottom: 1rem;
+        }
+
+        .about-bio p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #4b5563;
+        }
+
+        .about-bio ul {
+            list-style: none;
+            padding: 0;
+            margin-top: 1rem;
+        }
+
+        .about-bio li {
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: #6b7280;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-info div {
+            margin-bottom: 0.75rem;
+        }
+
+        .quick-info strong {
+            display: block;
+            font-size: 0.875rem;
+            color: #6b7280;
+            font-weight: 500;
+        }
+
+        .quick-info p {
+            font-size: 1rem;
+            margin: 0.25rem 0 0;
+        }
+
+        .quick-info a {
+            color: #3b82f6;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+
+        .quick-info a:hover {
+            color: #2563eb;
+        }
+
+        .skills-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
+
+        .skill-card {
+            background-color: #f9fafb;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 7px rgba(0, 0, 0, 0.1);
+            border: 1px solid #e5e7eb;
+            text-align: center;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .skill-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .skill-card h4 {
+            font-size: 1rem;
+            font-weight: 600;
+            color: #1f2937;
+            margin: 0;
+        }
+
+        .experience-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .experience-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .experience-card {
+            background-color: #ffffffd2;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ffffffd2;
+        }
+
+        .experience-card h4 {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin: 0 0 0.25rem;
+        }
+
+        .experience-card p {
+            font-size: 0.875rem;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .service-card {
+            background-color: #ffffffd2;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ffffffd2;
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .service-card:hover {
+            transform: translateY(-8px);
+        }
+
+        .service-card h4 {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #1f2937;
+            margin: 0 0 0.5rem;
+        }
+
+        .service-card p {
+            font-size: 0.875rem;
+            line-height: 1.5;
+            color: #6b7280;
+            margin: 0;
+        }
+
+        .project-card {
+            background-color: #ffffffd2;
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ffffffd2;
+            text-align: center;
+        }
+
+        .project-card p {
+            color: #6b7280;
+            font-style: italic;
+        }
+
+        /* New Contact Section Styles */
+        .contact-card {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            border: 1px solid #ffffffd2;
+        }
+
+        .contact-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: #4b5563;
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-button {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: #3b82f6;
+            color: #fff;
+            text-decoration: none;
+            font-weight: 500;
+            padding: 0.75rem 1.5rem;
+            border-radius: 9999px;
+            transition: background-color 0.3s;
+        }
+
+        .contact-button:hover {
+            background-color: #2563eb;
+        }
+
+        .contact-button i {
+            font-size: 1.25rem;
+        }
+
+        .footer {
+            text-align: center;
+            font-size: 0.875rem;
+            color: #6b7280;
+            padding: 1rem 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <div class="logo-section">
+                <div class="logo-circle">
+                    <div class="logo-gradient-box"></div>
+                </div>
+                <div class="logo-text">
+                    <h1>Kerellos </h1>
+                    <p>Full-Stack Developer</p>
+                </div>
+            </div>
+
+            <nav class="nav-menu">
+                <a href="#home">Home</a>
+                <a href="#about">About</a>
+                <a href="#skills">Skills</a>
+                <a href="#experience">Experience</a>
+                <a href="#services">Services</a>
+                <a href="#projects">Projects</a>
+                <a href="#contact">Contact</a>
+            </nav>
+
+            <div class="social-icons">
+                <a href="#" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+            </div>
+        </header>
+
+        <!-- Main Content Section -->
+        <main class="main-content">
+
+            <!-- Left Column: Text and Buttons -->
+            <div class="text-column">
+                <span class="tagline">Available for Work</span>
+                <h1 class="name">Kerellos Rezk Shawqy</h1>
+                <h2 class="title">Full-Stack Developer</h2>
+                <p class="bio-text">
+                    A web developer with a strong foundation in programming and with experience in
+                    building multiple projects.
+                </p>
+                <div class="buttons">
+                    <a href="#contact" class="button primary">Contact</a>
+                    <a href="#projects" class="button secondary">See Projects</a>
+                </div>
+                <div class="footer-text">
+                    Third-year student — Faculty of Engineering (Communications Department)
+                </div>
+            </div>
+
+            <!-- Right Column: Image -->
+            <div class="image-column">
+                <img src="https://placehold.co/600x600/E5E7EB/6B7280?text=Your+Photo+Here" alt="Your Photo"
+                    class="profile-image">
+            </div>
+
+        </main>
+
+        <!-- --- About Me and Quick Info Section --- -->
+        <section id="about" class="section-container">
+            <div class="about-grid">
+                <div class="about-bio">
+                    <h3>About Me</h3>
+                    <p>
+                        I'm Kerellos Rezk, a web developer from Egypt with a strong foundation in programming through 5
+                        years
+                    </p>
+                    <ul>
+                        <!-- <li>ICPC problem solving — 5 years</li>
+                        <li>Several GitHub projects showcasing full-stack work</li> -->
+                        <li>Training: Rwad Masr </li>
+                    </ul>
+                </div>
+                <div class="quick-info">
+                    <h3>Quick Info</h3>
+                    <div>
+                        <strong>Location:</strong>
+                        <p>Egypt</p>
+                    </div>
+                    <div>
+                        <strong>Open to:</strong>
+                        <p>Internships & Freelance</p>
+                    </div>
+                    <div>
+                        <strong>Email:</strong>
+                        <p><a href="mailto:kokooppo752@gmail.com">kokooppo752@gmail.com</a></p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Technical Skills Section --- -->
+        <section id="skills" class="section-container">
+            <h2 class="section-title">Technical Skills</h2>
+            <div class="skills-grid">
+                <div class="skill-card">
+                    <h4>Data Structures</h4>
+                </div>
+                <div class="skill-card">
+                    <h4>System Design</h4>
+                </div>
+                <div class="skill-card">
+                    <h4>Databases</h4>
+                </div>
+                <div class="skill-card">
+                    <h4>Web Applications Development</h4>
+                </div>
+                <div class="skill-card">
+                    <h4>Problem Solving</h4>
+                </div>
+                <div class="skill-card">
+                    <h4>Object-Oriented Programming (OOP)</h4>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Experience Section --- -->
+        <section id="experience" class="section-container">
+            <h2 class="section-title">Experience</h2>
+            <div class="experience-grid">
+                <div class="experience-card">
+                    <h4>Rwad Masr (رواد مصر )</h4>
+                    <p>Training</p>
+                </div>
+                <div class="experience-card">
+                    <h4>Information Technology Institute (ITI)</h4>
+                    <p>Programs</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Services Section --- -->
+        <section id="services" class="section-container">
+            <h2 class="section-title">Services</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <h4>Develop modern web applications with speed and performance</h4>
+                    <p>I deliver this with modern best practices, testability and clean code architecture.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Build responsive and user-friendly interfaces</h4>
+                    <p>I deliver this with modern best practices, testability and clean code architecture.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Design scalable and maintainable backend systems</h4>
+                    <p>I deliver this with modern best practices, testability and clean code architecture.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Debugging and fixing complex technical issues</h4>
+                    <p>I deliver this with modern best practices, testability and clean code architecture.</p>
+                </div>
+                <div class="service-card">
+                    <h4>Deliver secure, optimized, and efficient web applications</h4>
+                    <p>I deliver this with modern best practices, testability and clean code architecture.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- --- Projects Section --- -->
+        <section id="projects" class="section-container">
+            <h2 class="section-title">Projects</h2>
+            <div class="project-card">
+                <p>No projects yet — will add them next step.</p>
+            </div>
+        </section>
+
+        <!-- --- Contact Section --- -->
+        <section id="contact" class="section-container">
+            <h2 class="section-title">Get in Touch</h2>
+            <div class="contact-card">
+                <p>Feel free to reach out for collaborations or just a friendly chat.</p>
+                <a href="mailto:kokooppo752@gmail.com" class="contact-button">
+                    <i class="fa-regular fa-envelope"></i>
+                    kokooppo752@gmail.com
+                </a>
+            </div>
+        </section>
+
+    </div>
+
+    <footer class="footer">
+        <p>&copy; 2025 Kerellos Rezk Shawqy. All rights reserved.</p>
+    </footer>
+
+</body>
+
+</html>
